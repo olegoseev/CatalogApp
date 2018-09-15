@@ -1,0 +1,30 @@
+{% extends "main.html" %} {% block content %}
+<div class="container catalog rounded">
+  <div class="row border-secondary border-bottom">
+    <div class="col-3">
+      <p class="h3 font-weight-bold text-primary">Categories</p>
+    </div>
+    <div class="col">
+      <p class="h3 font-weight-bold text-primary">Latest Items</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-3 border-secondary border-right">
+      <div class="list-group">
+        {% for c in categories %}
+        <a href="{{url_for('show_category_items', category = c.name )}}" class="btn btn-block btn-outline-dark border-0 mb-1 text-left list-font">{{c.name}}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="list-group">
+        {% for i in items %} {% for c in categories %} {% if c.id == i.category_id%}
+        <a href="{{url_for('show_item_description', category=c.name, item=i.name)}}" class="btn btn-block btn-outline-dark border-0 mb-1 text-left list-font">{{i.name}}
+          <span class="font-italic font-weight-light text-primary">({{c.name}})</span>
+        </a>
+        {% endif %} {% endfor %} {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

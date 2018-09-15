@@ -1,0 +1,25 @@
+{% extends "main.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card ml-5 mr-5 bg-light shadow-form">
+        <h5 class="card-header font-weight-bold text-primary">Delete Item</h5>
+        <div class="card-body">
+          <p class="h4 card-title">{{item.name}}</p>
+          <p class="card-text">Are you sure you want to delete?</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <form action="#" method="post">
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                  <a href="{{url_for('show_catalog')}}" class="btn btn-secondary">Cancel</a>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

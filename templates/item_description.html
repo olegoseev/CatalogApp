@@ -1,0 +1,27 @@
+{% extends "main.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <div class="card ml-5 mr-5 bg-light shadow-form">
+        <h5 class="card-header font-weight-bold text-primary">{{item.name}}</h5>
+        <div class="card-body">
+          <p class="h5 card-title">
+            <span class="font-italic">Category: </span>{{category.name}}</p>
+          <p class="card-text">Description: {{item.description}}</p>
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <a href="{{url_for('edit_item', item_name=item.name)}}" class="btn btn-warning">Edit</a>
+                <a href="{{url_for('delete_item', item_name=item.name)}}" class="btn btn-danger">Delete</a>
+              </div>
+              <div class="col">
+                <a href="{{url_for('show_catalog')}}" class="btn btn-secondary float-right">Back to Catalog</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

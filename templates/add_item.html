@@ -1,0 +1,36 @@
+{% extends "main.html" %} {% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <div class="card ml-5 mr-5 bg-light shadow-form">
+        <p class="h5 card-header font-weight-bold text-primary">Add Item</p>
+        <div class="card-body">
+          <form action="{{ url_for('add_item')}}" method="post">
+            <div class="form-group form_input">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" name="title">
+            </div>
+            <div class="form-group form_input">
+              <label for="description">Description</label>
+              <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <div class="form-group form-check">
+              <label class="mr-2" for="category_select">Category</label>
+              <select class="custom-select mr-2" id="category_select" name="category_select">
+                <option value="0" selected>Choose category...</option>
+                {% for c in categories %}
+                <option value="{{c.id}}">{{c.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form_input mt-5">
+              <button type="submit" class="btn btn-warning">Add Item</button>
+              <a href="{{url_for('show_catalog')}}" class="btn btn-secondary">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
