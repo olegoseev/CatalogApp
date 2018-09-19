@@ -389,8 +389,9 @@ def g_connect():
     access_token = credentials.access_token
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token={}'
            .format(access_token))
-    h = httplib2.Http()
-    result = json.loads(h.request(url, 'GET')[1])
+
+    gresp = requests.get(url=url)
+    result = json.loads(gresp.text)
 
     # If there was an error in the access token info, abort.
     if result.get('error') is not None:
