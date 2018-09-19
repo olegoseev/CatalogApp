@@ -267,11 +267,14 @@ def user_connect():
         flash("Unknown user or bad password")
         return redirect(url_for('login_page'))
 
+    user = session.query(User).filter_by(
+        username=username).one_or_none()
+    
     login_session['provider'] = 'username'
     login_session['username'] = username
     login_session['email'] = username
     login_session['picture'] = ""
-    login_session['user_id'] = username
+    login_session['user_id'] = user.id
     return redirect(url_for('show_catalog'))
 
 
