@@ -22,9 +22,9 @@ class User(Base):
     __tablename__ = 'user'
     id = Column(Integer, primary_key=True)
     username = Column(String(32), index=True)
-    picture = Column(String)
-    email = Column(String)
-    password_hash = Column(String(64))
+    picture = Column(String(128))
+    email = Column(String(128))
+    password_hash = Column(String(256))
 
     def hash_password(self, password):
         self.password_hash = pwd_context.encrypt(password)
