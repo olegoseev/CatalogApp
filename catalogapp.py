@@ -230,7 +230,7 @@ def user_signup():
             flash("User already exists")
             return redirect(url_for('login_page'))
 
-        user = User(username=username)
+        user = User(username=username, picture='', email='')
         user.hash_password(password)
         session.add(user)
         session.commit()
