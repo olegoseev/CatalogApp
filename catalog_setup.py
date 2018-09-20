@@ -2,7 +2,7 @@
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
-from database_setup import Base, Category, Item
+from database_setup import Base, User, Category, Item
 
 engine = create_engine('sqlite:///catalog.db')
 Base.metadata.bind = engine
@@ -10,18 +10,24 @@ Base.metadata.bind = engine
 DBSession = scoped_session(sessionmaker(bind=engine))
 session = DBSession()
 
+user = User(id=1, username='john')
+
+session.add(user)
+session.commit() 
+
 # add categories
-action = Category(name='Action')
-adventure = Category(name='Adventure')
-comedy = Category(name='Comedy')
-drama = Category(name='Drama')
-scifi = Category(name='Sci-Fi')
+action = Category(id=1, name='Action')
+adventure = Category(id=2, name='Adventure')
+comedy = Category(id=3 ,name='Comedy')
+drama = Category(id=4, name='Drama')
+scifi = Category(id=5, name='Sci-Fi')
 session.add(action)
 session.add(adventure)
 session.add(comedy)
 session.add(drama)
 session.add(scifi)
 session.commit()
+
 
 # add categories items
 diehard = Item(name='Die Hard',
