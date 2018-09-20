@@ -310,7 +310,7 @@ def fb_connect():
     url = 'https://graph.facebook.com/v2.8/me?access_token={}&fields=name,id,'\
           'email'.format(token)
     h = httplib2.Http()
-    result = h.request(url, 'GET')[1]
+    result = h.request(url, 'GET')[1].decode()
 
     data = json.loads(result)
     login_session['provider'] = 'facebook'
@@ -325,7 +325,7 @@ def fb_connect():
     url = 'https://graph.facebook.com/v2.8/me/picture?access_token={}' \
           '&redirect=0&height=200&width=200'.format(token)
     h = httplib2.Http()
-    result = h.request(url, 'GET')[1]
+    result = h.request(url, 'GET')[1].decode()
     data = json.loads(result)
 
     login_session['picture'] = data["data"]["url"]
@@ -390,8 +390,8 @@ def g_connect():
     url = ('https://www.googleapis.com/oauth2/v1/tokeninfo?access_token={}'
            .format(access_token))
 
-    gresp = requests.get(url=url)
-    result = json.loads(gresp.text)
+    h = httplib2.Http()
+    result = json.loads(h.request(url, 'GET')[1].decode())
 
     # If there was an error in the access token info, abort.
     if result.get('error') is not None:
